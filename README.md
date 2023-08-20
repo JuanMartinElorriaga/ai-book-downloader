@@ -28,7 +28,7 @@ El resultado final es una carpeta en el directorio local con los contenidos desc
 ## ADICIONALES
 1. Usar la libreria click para armar todo como un CLI
 2. Modificar código de libgen-api para agregar holistic approach que busque tanto autor como titulo de libro
-
+3. Automatizar el proceso de recoleccion de token de Bard
 
 ## Referencias
 - (libgen-api)[https://github.com/harrison-broadbent/libgen-api]
