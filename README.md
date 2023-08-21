@@ -32,3 +32,5 @@ El resultado final es una carpeta en el directorio local con los contenidos desc
 
 ## Referencias
 - (libgen-api)[https://github.com/harrison-broadbent/libgen-api]
+
+Ver como hacer la descarga desde python! Si no funciona, correr con sh
