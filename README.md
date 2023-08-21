@@ -14,6 +14,9 @@ El manejo de inteligencia artificial está basado en [bardapi](https://pypi.org/
 
 El código de Libgen está basado en [libgen_api](https://github.com/harrison-broadbent/libgen-api), con una modificación sobre el código fuente para posibilitar búsquedas holísticas (tanto autor como título dentro de la misma búsqueda).
 
+
+Nota: no olvidar agregar un archivo .env
+
 ## INPUTS DE USUARIO
 1. limite de libros
 2. consulta a Bard
