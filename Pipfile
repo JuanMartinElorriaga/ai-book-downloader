@@ -6,8 +6,10 @@ name = "pypi"
 [packages]
 libgen-api = "*"
 bardapi = "*"
+python-dotenv = "*"
 
 [dev-packages]
+ipykernel = "*"
 
 [requires]
 python_version = "3.11"
