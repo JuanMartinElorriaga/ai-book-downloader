@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 MIRROR_SOURCES = ["GET", "Cloudflare", "IPFS.io", "Infura"]
 
 class LibgenSearch:
-    def search_title(self, query):
+    def search_holistic(self, query):
         search_request = SearchRequest(query, search_type="holistic")
         return search_request.aggregate_request_data()
 
