@@ -1,34 +1,11 @@
-# ai-book-downloader
+# libgen_parser_downloader
 
-## Concepto
-La búsqueda de libros en Internet suele ser un trabajo tedioso. En especial, cuando no se conocen los autores o títulos de libros más relevantes a la hora de aprender sobre un tópico en general, este proceso de búsqueda manual suele demandar mucho tiempo.
+Repo basado en [libgenparser](https://pypi.org/project/libgenparser/) para descargar libros desde Library Genesis en modo batch.
 
-Este es un programa para automatizar dicha búsqueda y descarga de libros. Seleccionando un tópico genérico que se desee aprender (ejemplo: macroeconomía, soap operas del siglo XXI, filosofía antigua, etc.), se genera a través de inteligencia artificial una lista de libros más relevantes. Posteriormente, dichos libros son automáticamente descargados usando la API de Libgen, y consolidados en una carpeta de descargas en el directorio local.
+Por default, el script recibe como input una lista de autores, y a partir de allí el programa se encarga de conseguir la metadata de cada libro del autor, generar links de descarga y finalmente descargar los contenidos en un directorio local.
 
-El codigo contiene 3 partes:
-1. *Consulta a AI*: conexion a _Bard API_ y extracción de respuesta como diccionario de Python
-2. *Obtencion de links*: conexión a _Libgen API_ para obtención de links de descarga
-3. *Descarga de archivos*: uso de librería _urllib_ para nombrar archivos y consolidar resultados en una carpeta dentro del directorio local.
-
-El manejo de inteligencia artificial está basado en [bardapi](https://pypi.org/project/bardapi/), el cual utiliza la _API de Google Bard_ para realizar una consulta personalizada. El resultado otorgado por la AI es luego parseado y convertido en mirrors de descarga de Libgen.
-
-El código de Libgen está basado en [libgen_api](https://github.com/harrison-broadbent/libgen-api), con una modificación sobre el código fuente para posibilitar búsquedas holísticas (tanto autor como título dentro de la misma búsqueda).
-
-
-*Nota*: no olvidar agregar un archivo `.env` conteniendo el token de Bard. Usar el archivo `example.env` a manera de guía.
-
-## INPUTS DE USUARIO
-1. limite de libros
-2. consulta a Bard
-
-## OUTPUT
-El resultado final es una carpeta en el directorio local con los contenidos descargados.
-
-## TODO LIST
-1. Usar la libreria click para armar el cli
-2. Automatizar el proceso de recoleccion de token de Bard
-3. sumar la funcionalidad de descarga en mas de un tipo de extension (epub o mobi)
-4. guardar resultados en forma de directorios con subcarpetas según tipo de extensión
+- El directorio local crea una carpeta principal (_download+timestamp_) con una subfolder por autor.
+- Dentro de cada subfolder se encuentran los libros descargados, en formato pdf, epub y mobi
 
 ## Referencias
 - [libgen-api](https://github.com/harrison-broadbent/libgen-api)
