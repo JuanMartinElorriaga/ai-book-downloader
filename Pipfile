@@ -8,6 +8,9 @@ libgen-api = "*"
 bardapi = "*"
 python-dotenv = "*"
 wget = "*"
+selenium = "*"
+undetected-chromedriver = "*"
+geckodriver-autoinstaller = "*"
 
 [dev-packages]
 ipykernel = "*"
