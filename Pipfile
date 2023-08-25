@@ -11,6 +11,11 @@ wget = "*"
 selenium = "*"
 undetected-chromedriver = "*"
 geckodriver-autoinstaller = "*"
+libgenparser = "*"
+fuzzywuzzy = "*"
+pip = "*"
+install = "*"
+python-levenshtein = "*"
 
 [dev-packages]
 ipykernel = "*"
