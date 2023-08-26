@@ -1,17 +1,18 @@
 import os
 from fuzzywuzzy import fuzz
+import click
 
-def find_similar_authors(authors) -> dict:
+def find_similar_authors(author_folders: list) -> dict:
     ''' Fuzzy string matching over author folders in local directory '''
     similar_authors = {}
-    for i, author1 in enumerate(authors):
-        for j, author2 in enumerate(authors):
+    for i, author1 in enumerate(author_folders):
+        for j, author2 in enumerate(author_folders):
             if i != j and fuzz.partial_ratio(author1, author2) >= 80:
                 similar_authors.setdefault(author1, []).append(author2)
     return similar_authors
 
 
-def rename_author_folders(directory_path ='./downloads/') -> None:
+def rename_author_folders(directory_path) -> None:
     ''' Local directory renaming and merging based on duplicated author folders '''
     # Get a list of author folders
     author_folders = [folder for folder in os.listdir(directory_path) if os.path.isdir(os.path.join(directory_path, folder))]
@@ -36,6 +37,6 @@ def rename_author_folders(directory_path ='./downloads/') -> None:
                 os.rename(item_path, new_item_path)
 
             os.rmdir(similar_author_path)
-        print(f"Merged {similar_list} into {main_author}")
+        click.secho(f"Merged {similar_list} into {main_author}", fg='blue')
 
-    print("Directory cleaning complete.")
+    click.secho("Directory cleaning complete.", fg='green')

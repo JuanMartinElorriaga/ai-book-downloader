@@ -1,27 +1,32 @@
 import os
 import urllib.request
 import socket
+import click
+from libgenparser.parser import LibgenParser
 
-def has_matching_language_extension(dict1, dict2) -> bool:
+def has_matching_language_extension(dict1: dict, dict2: dict) -> bool:
     ''' check if two dictionaries have matching language and extension '''
     return dict1['Language'] == dict2['Language'] and dict1['Extension'] == dict2['Extension']
 
 
-def is_similar_dict(new_dict, existing_dicts) -> bool:
+def is_similar_dict(new_dict: dict, existing_dicts: dict) -> bool:
+    ''' check similarity of two dictionaries '''
+    threshold = 80
     for d in existing_dicts:
-        if has_matching_language_extension(new_dict, d) and fuzz.token_set_ratio(new_dict['Title'].lower(), d['Title'].lower()) > 80:
+        if has_matching_language_extension(new_dict, d) and fuzz.token_set_ratio(new_dict['Title'].lower(), d['Title'].lower()) > threshold:
             return True
     return False
 
 
-def add_active_links_to_books(books_filtered_unique) -> dict:
-    for d in books_filtered_unique:
-        d["active_link"] = libgen.resolve_download_link(md5=d['MD5'])
-    return books_filtered_unique
+# def add_active_links_to_books(books_filtered_unique: list) -> dict:
+#     ''' take a list of dictionaries and add the current active link to each item '''
+#     for d in books_filtered_unique:
+#         d["active_link"] = libgen.resolve_download_link(md5=d['MD5'])
+#     return books_filtered_unique
 
 
-def download_books_using_mirrors(books_filtered_unique, timeout=240, download_path='./downloads') -> None:
-    # DOWNLOAD FILES USING MIRRORS
+def download_books_using_mirrors(books_filtered_unique: list, directory_path, timeout=180) -> None:
+    ''' download files using active link '''
     for d in books_filtered_unique:
         try:
             author    = d["Author"].replace(" ", "_")
@@ -31,13 +36,13 @@ def download_books_using_mirrors(books_filtered_unique, timeout=240, download_pa
             response  = urllib.request.urlopen(d["active_link"], timeout=timeout)
             content   = response.read()
             # Create the author-specific subfolder if it doesn't exist
-            author_folder = os.path.join(download_path, author)
+            author_folder = os.path.join(directory_path, author)
             os.makedirs(author_folder, exist_ok=True)
             save_path = os.path.join(author_folder, f'{filename}.{extension}')
             with open(save_path, 'wb') as file:
                 file.write(content)
-            print(f'{filename} SAVED TO {save_path}')
+            click.secho(f'{filename} saved to {save_path}', fg='green')
         except urllib.error.URLError as e:
-            print(f"Download from {url} mirror failed. Error: {e}.")
+            click.secho(f"Download from {d['active_link']} mirror failed. Error: {e}.", fg='red')
         except socket.timeout:
-            print(f"Download from {url} mirror timed out.")
+            click.secho(f"Download from {d['active_link']} mirror timed out.", fg='red')
