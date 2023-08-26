@@ -16,6 +16,7 @@ fuzzywuzzy = "*"
 pip = "*"
 install = "*"
 python-levenshtein = "*"
+click = "*"
 
 [dev-packages]
 ipykernel = "*"
