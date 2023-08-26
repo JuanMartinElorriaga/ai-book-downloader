@@ -4,17 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-libgen-api = "*"
-bardapi = "*"
-python-dotenv = "*"
-wget = "*"
-selenium = "*"
-undetected-chromedriver = "*"
-geckodriver-autoinstaller = "*"
 libgenparser = "*"
 fuzzywuzzy = "*"
 pip = "*"
-install = "*"
 python-levenshtein = "*"
 click = "*"
 

@@ -3,10 +3,12 @@ from libgenparser.parser import LibgenParser
 import os
 import socket
 import urllib.request
+import click
 
 @click.command()
 @click.option('--author', default=False, help='Author to search in Library Genesis and download all books in the database', type=str)
-def main(author):
+@click.option('--directory_path', default="./downloads/", help='Directory path to save all the books found', type=str)
+def main(author, directory_path):
     # Scrape author in Library Genesis
     libgen = LibgenParser()
     if author:
@@ -47,7 +49,7 @@ def main(author):
             extension = d["Extension"]
             response = urllib.request.urlopen(d["active_link"], timeout=timeout)
             content = response.read()
-            author_folder = os.path.join('../downloads', author)
+            author_folder = os.path.join(directory_path, author)
             os.makedirs(author_folder, exist_ok=True)
             save_path = os.path.join(author_folder, f'{filename}.{extension}')
             with open(save_path, 'wb') as file:
@@ -67,7 +69,6 @@ def main(author):
                     similar_authors.setdefault(author1, []).append(author2)
         return similar_authors
 
-    directory_path = "../downloads/"
     author_folders = [folder for folder in os.listdir(directory_path) if os.path.isdir(os.path.join(directory_path, folder))]
     similar_authors = find_similar_authors(author_folders)
 
