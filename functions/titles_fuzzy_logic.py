@@ -3,6 +3,7 @@ import urllib.request
 import socket
 import click
 from libgenparser.parser import LibgenParser
+from fuzzywuzzy import fuzz
 
 def has_matching_language_extension(dict1: dict, dict2: dict) -> bool:
     ''' check if two dictionaries have matching language and extension '''

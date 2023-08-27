@@ -8,6 +8,7 @@ def find_similar_authors(author_folders: list) -> dict:
     for i, author1 in enumerate(author_folders):
         for j, author2 in enumerate(author_folders):
             if i != j and fuzz.partial_ratio(author1, author2) >= 80:
+                click.secho(f"Found similar authors: {author1} and {author2}", fg='yellow')
                 similar_authors.setdefault(author1, []).append(author2)
     return similar_authors
 
