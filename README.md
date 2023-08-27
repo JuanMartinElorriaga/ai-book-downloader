@@ -20,10 +20,15 @@ git clone -b libgen_parser_downloader git@github.com:JuanMartinElorriaga/libgen_
 pipenv shell
 pipenv install
 ```
-- Correr el `CLI`, indicando el autor a descargar. Esto puede hacerse tanto con el flag `--author` como luego de correr la siguiente sentencia:
+- Para correr el `CLI`, correr la siguiente sentencia, indicando el autor a descargar. Esto puede hacerse tanto con el flag `--author` como luego de correr la sentencia:
 ```python
 python3 libgen_parser_downloader
 ```
+- Para correr el `GUI`, correr la siguiente sentencia:
+```python
+python3 gui_app
+```
+
 - En caso de dejar la carpeta de destino por default, se escogerá la carpeta `downloads` en el mismo nivel que el script. En caso de no existir, será creada automáticamente.
 
 ## Referencias

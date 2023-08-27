@@ -126,6 +126,7 @@
                 "sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==8.1.7"
         },
         "fuzzywuzzy": {
@@ -258,6 +259,7 @@
                 "sha256:b94e617d9c168e9cc512779d11c801ac888a37aff9d97718a53e32c49a4d80ee"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.6'",
             "version": "==1.0.0"
         },
         "lxml": {
@@ -364,6 +366,7 @@
                 "sha256:fb0bd5435b3200c602b5bf61d2d43c2f13c02e29c1707567ae7fbc514eb9faf2"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==23.2.1"
         },
         "python-levenshtein": {
@@ -372,6 +375,7 @@
                 "sha256:5f49ebb4772a274aac4aeb190fc23ad537ebe778dec15a8f17975f746478c691"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.6'",
             "version": "==0.21.1"
         },
         "rapidfuzz": {
@@ -573,6 +577,7 @@
                 "sha256:c8a2430b357073b37c76c21c52184db42f6b4b0e438e1eb7df3c4440d120497c"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.8'",
             "version": "==6.25.1"
         },
         "ipython": {
