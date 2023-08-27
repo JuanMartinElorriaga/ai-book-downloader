@@ -3,6 +3,7 @@ from libgenparser.parser import LibgenParser
 import os
 import socket
 import urllib.request
+import http.client
 import click
 from functions.titles_fuzzy_logic import *
 from functions.authors_fuzzy_logic import *

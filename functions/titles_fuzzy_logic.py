@@ -1,5 +1,6 @@
 import os
 import urllib.request
+import http.client
 import socket
 import click
 from libgenparser.parser import LibgenParser
@@ -19,14 +20,7 @@ def is_similar_dict(new_dict: dict, existing_dicts: dict) -> bool:
     return False
 
 
-# def add_active_links_to_books(books_filtered_unique: list) -> dict:
-#     ''' take a list of dictionaries and add the current active link to each item '''
-#     for d in books_filtered_unique:
-#         d["active_link"] = libgen.resolve_download_link(md5=d['MD5'])
-#     return books_filtered_unique
-
-
-def download_books_using_mirrors(books_filtered_unique: list, directory_path, timeout=180) -> None:
+def download_books_using_mirrors(books_filtered_unique: list, directory_path, timeout=240) -> None:
     ''' download files using active link '''
     for d in books_filtered_unique:
         try:
@@ -45,5 +39,10 @@ def download_books_using_mirrors(books_filtered_unique: list, directory_path, ti
             click.secho(f'{filename} saved to {save_path}', fg='green')
         except urllib.error.URLError as e:
             click.secho(f"Download from {d['active_link']} mirror failed. Error: {e}.", fg='red')
+            continue
         except socket.timeout:
             click.secho(f"Download from {d['active_link']} mirror timed out.", fg='red')
+            continue
+        except http.client.IncompleteRead as ic:
+            click.secho(f"IncompleteRead error. Skipping...", fg='red')
+            continue
